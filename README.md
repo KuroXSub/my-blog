@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Blog -  (Development)
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+[![GitHub stars](https://img.shields.io/github/stars/kuroxsub/my-blog?style=for-the-badge)](https://github.com/kuroxsub/my-blog/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/kuroxsub/my-blog?style=for-the-badge)](https://github.com/kuroxsub/my-blog/network)
+[![GitHub issues](https://img.shields.io/github/issues/kuroxsub/my-blog?style=for-the-badge)](https://github.com/kuroxsub/my-blog/issues)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+</div>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Platform blog modern yang ringan, aman, dan dioptimasi penuh untuk SEO. Dibangun dengan Next.js App Router, menggunakan Sanity.io sebagai Headless CMS untuk penulisan artikel, dan dilengkapi dengan sistem komentar interaktif via Giscus yang terintegrasi dengan GitHub Discussions.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Fitur Utama
+- **Performa & Rendering Cepat:** Menggunakan Incremental Static Regeneration (ISR) dengan revalidasi tiap 30 detik untuk memastikan konten selalu segar tanpa mengorbankan kecepatan.
+- **Headless CMS Terintegrasi:** Manajemen konten yang fleksibel menggunakan Sanity.io dengan format Portable Text.
+- **Sistem Komentar Aman:** Menggunakan Giscus (berbasis GitHub Discussions) yang ringan dan otomatis menyaring spam.
+- **Optimasi SEO Maksimal:** Injeksi dynamic metadata dan OpenGraph tags otomatis pada setiap halaman artikel.
+- **Keamanan Berlapis:** Dilengkapi HTTP Security Headers (CSP, X-Frame-Options, X-Content-Type-Options) untuk mencegah XSS dan Clickjacking.
+- **Modern Styling:** Menggunakan Tailwind CSS v4 beserta plugin Typography untuk tampilan bacaan yang rapi dan responsif.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
+- **Framework:** Next.js 16 (React 19, TypeScript)
+- **Styling:** Tailwind CSS v4, PostCSS, `@tailwindcss/typography`
+- **CMS / Data:** Sanity.io (`next-sanity`), `@portabletext/react`
+- **Komentar:** Giscus (`@giscus/react`)
+- **Deployment (Rekomendasi):** Vercel / Cloudflare Pages / Netlify
 
-## Learn More
+## Instalasi
 
-To learn more about Next.js, take a look at the following resources:
+### Prasyarat
+- Node.js versi 18 atau lebih baru.
+- Akun Sanity.io beserta Project ID.
+- Repositori GitHub publik dengan fitur Discussions diaktifkan (untuk Giscus).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Panduan Instalasi
+1. Clone repositori ini ke mesin lokal Anda:
+	```bash
+	git clone https://github.com/kuroxsub/my-blog.git
+	cd my-blog
+	```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Instal seluruh dependensi:
+	```bash
+	npm install
+	```
 
-## Deploy on Vercel
+3. Buat file `.env.local` di root direktori dan masukkan kredensial Sanity Anda:
+	```env
+	NEXT_PUBLIC_SANITY_PROJECT_ID="project_id_anda"
+	NEXT_PUBLIC_SANITY_DATASET="production"
+	```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Jalankan development server:
+	```bash
+	npm run dev
+	```
+	Buka `http://localhost:3000` di browser untuk melihat hasilnya.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Struktur Direktori
+```text
+my-blog/
+├── src/
+│   ├── app/                
+│   │   ├── [slug]/          # Rute dinamis untuk halaman detail artikel
+│   │   ├── globals.css      # Konfigurasi Tailwind CSS v4 & Plugin
+│   │   ├── layout.tsx       # Root layout & injeksi Metadata dasar
+│   │   └── page.tsx         # Halaman utama (daftar artikel)
+│   ├── components/         
+│   │   └── Comments.tsx     # Komponen Client untuk Giscus
+│   └── sanity/              # Konfigurasi klien Sanity
+│       └── client.ts        # Setup fungsi fetch (Next.js client)
+├── public/                  # Aset statis (gambar, favicon)
+├── .env.local               # Environment variables (Ignored in Git)
+├── next.config.ts           # Konfigurasi Next.js, Security Headers & Remote Images
+├── eslint.config.mjs        # Konfigurasi Linter
+├── postcss.config.mjs       # Konfigurasi PostCSS untuk Tailwind v4
+└── README.md
+
+## 👨‍💻 Pengembang
+Dikembangkan oleh Qurrota sebagai bagian dari ekosistem KuroSapa Labs.
+
+Website Pengembang: [kuroxsub.my.id](https://kuroxsub.my.id)
+
+GitHub: [@KuroXSub](https://github.com/KuroXSub)
