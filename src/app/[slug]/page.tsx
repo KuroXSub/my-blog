@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Comments from "@/components/Comments";
 
 export async function generateMetadata({
   params,
@@ -71,6 +72,9 @@ export default async function PostPage({
         <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
         {Array.isArray(post.body) && <PortableText value={post.body} />}
       </div>
+
+      <Comments />
+      
     </main>
   );
 }
